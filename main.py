@@ -1,4 +1,5 @@
 import pygame
+import sys
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -26,6 +27,9 @@ def main():
                 return
         screen.fill("black")
         updatables.update(dt)
+        for asteroid in asteroids:
+            if asteroid.colliding(player):
+                sys.exit("Game over!")
         for drawable in drawables:
             drawable.draw(screen)
         dt = clock.tick(60) / 1000
