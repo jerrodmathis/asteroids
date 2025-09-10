@@ -33,6 +33,11 @@ def main():
         for asteroid in asteroids:
             if asteroid.colliding(player):
                 sys.exit("Game over!")
+
+            for shot in shots:
+                if asteroid.colliding(shot):
+                    asteroid.kill()
+                    shot.kill()
         for drawable in drawables:
             drawable.draw(screen)
         dt = clock.tick(60) / 1000
